@@ -14,6 +14,7 @@ CHANNEL_NAME="mychannel"
 CC_SRC_LANGUAGE=golang
 # Chaincode name
 CHAINCODE_NAME='test-chaincode'
+# CHAINCODE_NAME='users'
 
 while [ -z "$VERSION" ]; do
     read -p "Input chaincode version: " VERSION

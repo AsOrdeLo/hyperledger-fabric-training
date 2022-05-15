@@ -423,3 +423,27 @@ func Test_BankTransactionCount(t *testing.T) {
 	assert.Equal(t, bank.TransactionCount, 2)
 
 }
+
+func MockCreateBank(bankId string) (*smartcontract.Bank, error ) {
+	res := Stub.MockInvoke("uuid",
+		[][]byte{
+			[]byte("CreateBank"),
+			[]byte(bankId),
+		})
+
+	if res.Status != shim.OK {
+		fmt.Println("CreateBank failed", string(res.Message))
+		return errors.New("CreateBank error")
+	}
+	return nil
+}
+
+func Test_CreateBank(t *testing.T) {
+	fmt.Println("Test_CreateBank-----------------")
+	NewStub()
+
+	err := MockCreateBank(bankId)
+	if err != nil {
+		t.FailNow()
+	}
+}
